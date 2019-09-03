@@ -1,9 +1,9 @@
 {
 "companyName": "DefaultCompany",
 "productName": "Tango",
-"dataUrl": "v0.1.1.data.unityweb",
-"wasmCodeUrl": "v0.1.1.wasm.code.unityweb",
-"wasmFrameworkUrl": "v0.1.1.wasm.framework.unityweb",
+"dataUrl": "v0.2.data.unityweb",
+"wasmCodeUrl": "v0.2.wasm.code.unityweb",
+"wasmFrameworkUrl": "v0.2.wasm.framework.unityweb",
 "TOTAL_MEMORY": 268435456,
 "graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
 "webglContextAttributes": {"preserveDrawingBuffer": false},
