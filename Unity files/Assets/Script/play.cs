@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
 /// "isMoving" class is defined in around.cs
-/// "streaming" class, "total" class are definedinsave.cs
+/// "streaming" class, "total" class are defined in save.cs
 /// "isTurning" class is defined in Turn.cs, which actually does the turning.
 /// </summary>
 

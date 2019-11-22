@@ -168,21 +168,6 @@ public class face : MonoBehaviour
         show();
     }
 
-    //public void rotate(int value)
-    //{
-    //    rot = value;
-    //    //switch (value)
-    //    //{
-    //    //    case 0:
-    //    //        rot = 0;
-    //    //        break;
-    //    //    case 1:
-    //    //        rot = 1;
-    //    //        break;
-
-    //    //}
-    //    show(); 
-    //}
 
     // changing the face direction
     public void facedir(int value)
