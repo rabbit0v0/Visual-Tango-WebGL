@@ -43,11 +43,12 @@ public class play : MonoBehaviour
             stepback.SetActive(false);
         }
         // play all in a row then stop.
+        // when finished, ind.i must = -1.
         if (status == 1)
         {
-            if (ind.i == streaming.l.Count - 1)
+            if (ind.i >= streaming.l.Count - 1 || ind.i < -1)
             {
-                go(ind.i);
+                //go(ind.i);
                 ind.i = -1;
                 status = 0;
                 return;
@@ -58,30 +59,35 @@ public class play : MonoBehaviour
         // step by step
         else if (status == 2)
         {
-            //step forward
+            // step forward
+            // can stop when ind.i in [0, tot-1].
             if (!stepback.GetComponent<Toggle>().isOn)
             {
                 ind.i = ind.i + 1;
-                if (ind.i == -1 || ind.i == streaming.l.Count)
+                if (ind.i >= streaming.l.Count)
                 {
-                    ind.i = -1;
-                    go(-1);
+                    ind.i = 0;
+                    go(ind.i);
+                    status = 0;
+                    return;
                 }
                 go(ind.i);
                 
                 status = 0;
             }
             // step back
+            // can stop when ind.i in [0, tot-1].
             else
             {
                 ind.i = ind.i - 1;
-                if (ind.i == -1 || ind.i == streaming.l.Count)
+                if (ind.i <= -1)
                 {
                     ind.i = streaming.l.Count - 1;
-                    go(-1);
+                    go(ind.i);
+                    status = 0;
+                    return;
                 }
                 go(ind.i);
-                Debug.Log(ind.i);
                 status = 0;
             }
         }
@@ -110,7 +116,8 @@ public class play : MonoBehaviour
             stepAround(pp);
             return;
         }
-        
+        Debug.Log(k);
+        Debug.Log(streaming.l[k].r);
         Move(streaming.l[k]);
         stepAround(streaming.l[k]);
         turnAround(streaming.l[k]);

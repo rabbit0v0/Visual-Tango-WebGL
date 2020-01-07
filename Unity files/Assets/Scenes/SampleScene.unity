@@ -2908,6 +2908,19 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   timerNow: 0
+--- !u!114 &680227752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680227747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e410ac44f736408ba4ac5c392e3a01f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerNow: 0
 --- !u!1 &685073540
 GameObject:
   m_ObjectHideFlags: 0
