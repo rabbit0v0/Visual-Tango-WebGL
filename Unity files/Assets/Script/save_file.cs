@@ -5,13 +5,9 @@ using System.IO;
 using System.Text;
 using UnityEngine.UI;
 using SFB;
-using System.Runtime.InteropServices;
 
 public class save_file : MonoBehaviour
 {
-    [DllImport("__Internal")]
-    private static extern void SaveTextAsFile(string filename, string text);
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +32,25 @@ public class save_file : MonoBehaviour
         for (int i = 0; i < streaming.l.Count; i++)
         {
             sb.Append(streaming.l[i].d);
-            sb.Append("\n");
             sb.Append(streaming.l[i].h);
-            sb.Append("\n");
             sb.Append(streaming.l[i].p);
-            sb.Append("\n");
             sb.Append(streaming.l[i].r);
-            sb.Append("\n");
             sb.Append(streaming.l[i].t);
-            sb.Append("\n");
             sb.Append(streaming.l[i].w);
-            if (i != streaming.l.Count - 1)
-            {
-                sb.Append("\n");
-            }
         }
 
-        SaveTextAsFile("save.txt", sb.ToString());
+        byte[] bytes = new UTF8Encoding().GetBytes(sb.ToString());
 
+
+        //var path = EditorUtility.SaveFolderPanel("Choose a local folder to save", "", "");
+        var path = StandaloneFileBrowser.SaveFilePanel("Save File", "", "", "");
+        if (path.Length != 0)
+        {
+            if (bytes != null)
+            {
+                File.WriteAllBytes(path + ".txt", bytes);
+            }
+        }
     }
     //+ DateTime.Now.GetDateTimeFormats('s')[0]
 }

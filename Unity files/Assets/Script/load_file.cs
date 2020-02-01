@@ -6,29 +6,14 @@ using System.IO;
 using System.Text;
 using UnityEngine.UI;
 using SFB;
-using System.Runtime.InteropServices;
-
 
 public class load_file : MonoBehaviour
 {
-    [DllImport("__Internal")]
-    private static extern void LoadFileToLocalStorage();
-
-    [DllImport("__Internal")]
-    private static extern int CheckLoadDone();
-
-    [DllImport("__Internal")]
-    private static extern string GetLoadedString();
-
-    [DllImport("__Internal")]
-    private static extern void RefreshStorage();
-    
     string[] Name = { "Collected", "Corssed forward", "Forward", "Backward", "In air forward", "In air backward", "Slide outside", "Wrapped around", "Collected high", "Crossed backward" };
     string[] Height = { "straight", "bent", "tiptoe" };
     string[] Leg = { "right", "left" };
     string[] Direction = { "north", "northwest", "northeast" };
     int[] angle = { 0, 30, 60, 90, 120, 150, 180, 270, 360 };
-
     // Start is called before the first frame update
     void Start()
     {
@@ -49,43 +34,23 @@ public class load_file : MonoBehaviour
 
     void Load()
     {
-        clear();
+        var path = StandaloneFileBrowser.OpenFilePanel("Open File", "", "", false);
 
-        LoadFileToLocalStorage();
+        byte[] bytes = File.ReadAllBytes(path[0]);
 
-        StartCoroutine(ConditionRun());
-        
-    }
-
-    void clear()
-    {
-        RefreshStorage();
-        streaming.l = new List<Pose>();
-        total.t = 0;
-        selected.s = 0;
-    }
-
-    IEnumerator ConditionRun()
-    {
-        Debug.Log("Start waiting condition...");
-        yield return new WaitUntil(() => CheckLoadDone() != -1);
-        Debug.Log("Ready to go.");
-
-        var s = GetLoadedString();
-
+        string s = new UTF8Encoding().GetString(bytes);
         Debug.Log(s);
 
-        string[] s_split = s.Split('\n');
-        
-        for (int i = 0; i < s_split.Length; i += 6)
+        clear();
+        for (int i = 0; i < s.Length; i+=6)
         {
             Pose p = new Pose();
-            p.d = Int32.Parse(s_split[i]);
-            p.h = Int32.Parse(s_split[i + 1]);
-            p.p = Int32.Parse(s_split[i + 2]);
-            p.r = Int32.Parse(s_split[i + 3]);
-            p.t = Int32.Parse(s_split[i + 4]);
-            p.w = Int32.Parse(s_split[i + 5]);
+            p.d = Int32.Parse(s[i].ToString());
+            p.h = Int32.Parse(s[i + 1].ToString());
+            p.p = Int32.Parse(s[i + 2].ToString());
+            p.r = Int32.Parse(s[i + 3].ToString());
+            p.t = Int32.Parse(s[i + 4].ToString());
+            p.w = Int32.Parse(s[i + 5].ToString());
             Debug.Log(p.p);
             streaming.l.Add(p);
             total.tot += 1;
@@ -143,6 +108,15 @@ public class load_file : MonoBehaviour
                 text.fontStyle = FontStyle.BoldAndItalic;
                 //Debug.Log(selected.select);
             });
+
         }
     }
+
+    void clear()
+    {
+        streaming.l = new List<Pose>();
+        total.t = 0;
+        selected.s = 0;
+    }
+
 }
