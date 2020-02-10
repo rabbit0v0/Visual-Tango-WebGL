@@ -147,8 +147,8 @@ public class play : MonoBehaviour
             {
                 isMoving.m = 1;
                 isMoving.tmp = model.transform.position;
-                isMoving.xx = (float)(Mathf.Sin(leg_l.transform.rotation.x) * 0.95 + Mathf.Sin(leg_ll.transform.rotation.x) * 0.45);
-                isMoving.zz = (float)(-Mathf.Sin(leg_l.transform.rotation.z) * 0.95 - Mathf.Sin(leg_ll.transform.rotation.z) * 0.45);
+                isMoving.xx = (float)(Mathf.Sin(leg_l.transform.rotation.x) * 1.50 + Mathf.Sin(leg_ll.transform.rotation.x) * 0.7);
+                isMoving.zz = (float)(-Mathf.Sin(leg_l.transform.rotation.z) * 1.50 - Mathf.Sin(leg_ll.transform.rotation.z) * 0.7);
             }
             else
                 return;
@@ -159,8 +159,8 @@ public class play : MonoBehaviour
             {
                 isMoving.m = 1;
                 isMoving.tmp = model.transform.position;
-                isMoving.xx = (float)(Mathf.Sin(leg_r.transform.rotation.x) * 0.95 + Mathf.Sin(leg_rr.transform.rotation.x) * 0.45);
-                isMoving.zz = (float)(-Mathf.Sin(leg_r.transform.rotation.z) * 0.95 - Mathf.Sin(leg_rr.transform.rotation.z) * 0.45);
+                isMoving.xx = (float)(Mathf.Sin(leg_r.transform.rotation.x) * 1.50 + Mathf.Sin(leg_rr.transform.rotation.x) * 0.7);
+                isMoving.zz = (float)(-Mathf.Sin(leg_r.transform.rotation.z) * 1.50 - Mathf.Sin(leg_rr.transform.rotation.z) * 0.7);
                 //model.transform.position = tmp + new Vector3((float)(-Mathf.Sin(leg_r.transform.rotation.x) * 0.95 - Mathf.Sin(leg_rr.transform.rotation.x) * 0.5), 0, (float)(-Mathf.Sin(leg_r.transform.rotation.z) * 0.95 - Mathf.Sin(leg_rr.transform.rotation.z) * 0.5));
             }
             else
